@@ -6,28 +6,31 @@
    xsi:schemaLocation = "http://www.springframework.org/schema/beans
    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
    http://www.springframework.org/schema/context
-   http://www.springframework.org/schema/context/spring-context-3.0.xsd" default-init-method="init" >
+   http://www.springframework.org/schema/context/spring-context-3.0.xsd"  >
 
 
-<bean id = "translator" class = "de.application.hello.TranslatorToUpperImpl"/>
-<bean id = "lower" class = "de.application.hello.TranslatorToLowerImpl"/>
+	<context:annotation-config/>
 
-	<bean id = "hello" 
+	<context:component-scan base-package="de"/>
+
+
+
+	<!--  bean id = "hello" 
 		class = "de.application.hello.Hello" 
 		destroy-method="close" 
 		scope="singleton"
-		autowire="byName"
+		autowire="byType"
 		>
       <property name = "message" value = "Hello World!"/>
      
-   </bean>
+   </bean -->
 	
 	
      
-	<bean id="impl" class="de.math.CalculatorImpl"/>
+	<!--  bean id="impl" class="de.math.CalculatorImpl"/-->
 	<!--  bean id="logger" class="de.math.CalculatorLogger"  autowire="constructor" /-->
-	<bean id="calculator" class="de.math.CalculatorSecure"  autowire="constructor" />
-	<bean id="client" class="de.client.CalcClient" init-method="go" autowire="constructor" />
+	<!--  bean id="calculator" class="de.math.CalculatorSecure"  autowire="constructor" /-->
+	<!--  bean id="client" class="de.client.CalcClient" init-method="go" autowire="constructor" / -->
 		
 
 	
