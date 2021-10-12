@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class FirstWebAppApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FirstWebAppApplication.class, args);
+		SpringApplication.run(FirstWebAppApplication.class, args) ;
 	}
 
 }
