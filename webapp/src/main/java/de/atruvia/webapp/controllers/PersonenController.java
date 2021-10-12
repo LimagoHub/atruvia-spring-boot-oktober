@@ -3,24 +3,19 @@ package de.atruvia.webapp.controllers;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import javax.validation.Valid;
 
-import org.aspectj.weaver.patterns.HasThisTypePatternTriedToSneakInSomeGenericOrParameterizedTypePatternMatchingStuffAnywhereVisitor;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import de.atruvia.webapp.controllers.dtos.PersonDTO;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -111,7 +106,7 @@ public class PersonenController {
 //		return ResponseEntity.ok(dto);
 //	}
 	
-		@GetMapping(path="/{id}/toUpper", produces = MediaType.APPLICATION_JSON_VALUE)
+		@GetMapping(path="/{id}/to-upper", produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<PersonDTO> toUpper (@PathVariable String id) {
 			var dto = PersonDTO.builder().id(id).vorname("JOHN").nachname("DOE").build();
 			return ResponseEntity.ok(dto);
@@ -123,3 +118,17 @@ public class PersonenController {
 		}
 
 }
+
+/*
+
+VERB	Safe	idempotent
+
+GET	    ja	    ja	    Daten holen
+DELETE	nein	ja	    Daten löschen
+PUT	    nein	ja	    Daten einfügen oder ändern
+POST	nein	nein	Daten einfügen oder ändern
+
+POST	Ja	Ja	Daten holen (Get-Ersatz wenn Parameter keine Strings oder zahlen sondern Objekte sind
+
+
+ */

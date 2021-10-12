@@ -1,6 +1,12 @@
 package de.atruvia.webapp.controllers.errorhandling;
 
 
+import java.time.LocalDateTime;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,15 +16,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import lombok.extern.slf4j.Slf4j;
 
 
 @ControllerAdvice
+@Slf4j
 public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
 
 	 @ExceptionHandler(Exception.class)
@@ -37,7 +39,7 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
         body.put("timestamp", LocalDateTime.now());
         body.put("message", ex.getMessage());
         body.put("xyz", "abc");
-        // Loggen
+        log.error("Upps", ex);// Wichtig
         return ResponseEntity.badRequest().body(body);
     }
 
