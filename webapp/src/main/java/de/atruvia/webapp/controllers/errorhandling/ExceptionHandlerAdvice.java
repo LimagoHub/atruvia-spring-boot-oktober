@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @ControllerAdvice
 @Slf4j
-public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
+public class ExceptionHandlerAdvice extends ResponseEntityExceptionHandler {
 
 	 @ExceptionHandler(Exception.class)
 	    public ResponseEntity<Object> handleGenericException(Exception ex, WebRequest request) {
@@ -62,6 +62,8 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
 
         return ResponseEntity.badRequest().body(body);
     }
+    
+    
     
     
 }

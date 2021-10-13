@@ -3,6 +3,8 @@ package de.atruvia.webapp.repositories.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 
@@ -21,6 +23,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="tbl_personen")
+@NamedQuery(name="PersonEntity.findAllAsList", query = "select p from PersonEntity p")
 public class PersonEntity {
 	
 	//@EqualsExclude
