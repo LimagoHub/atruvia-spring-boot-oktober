@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import de.atruvia.webapp.services.PersonenServiceException;
+import de.atruvia.webapp.services.SchweineServiceException;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -33,15 +35,25 @@ public class ExceptionHandlerAdvice extends ResponseEntityExceptionHandler {
 	        return ResponseEntity.badRequest().body(body);
 	    }
 
-    @ExceptionHandler(ArrayIndexOutOfBoundsException.class)
-    public ResponseEntity<Object> handleArrayException(ArrayIndexOutOfBoundsException ex, WebRequest request) {
-        Map<String, Object> body = new LinkedHashMap<>();
-        body.put("timestamp", LocalDateTime.now());
-        body.put("message", ex.getMessage());
-        body.put("xyz", "abc");
-        log.error("Upps", ex);// Wichtig
-        return ResponseEntity.badRequest().body(body);
-    }
+	  @ExceptionHandler(PersonenServiceException.class)
+	    public ResponseEntity<Object> handleArrayException(PersonenServiceException ex, WebRequest request) {
+	        Map<String, Object> body = new LinkedHashMap<>();
+	        body.put("timestamp", LocalDateTime.now());
+	        body.put("message", ex.getMessage());
+	        body.put("xyz", "abc");
+	        log.error("Upps", ex);// Wichtig
+	        return ResponseEntity.badRequest().body(body);
+	    }
+
+	  @ExceptionHandler(SchweineServiceException.class)
+	    public ResponseEntity<Object> handleArrayException(SchweineServiceException ex, WebRequest request) {
+	        Map<String, Object> body = new LinkedHashMap<>();
+	        body.put("timestamp", LocalDateTime.now());
+	        body.put("message", ex.getMessage());
+	        body.put("xyz", "abc");
+	        log.error("Upps", ex);// Wichtig
+	        return ResponseEntity.badRequest().body(body);
+	    }
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid( MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {

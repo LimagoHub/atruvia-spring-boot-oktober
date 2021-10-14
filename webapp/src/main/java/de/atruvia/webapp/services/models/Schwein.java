@@ -1,8 +1,5 @@
 package de.atruvia.webapp.services.models;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
