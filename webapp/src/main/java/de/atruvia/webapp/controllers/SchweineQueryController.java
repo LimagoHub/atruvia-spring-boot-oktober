@@ -23,7 +23,7 @@ import lombok.AllArgsConstructor;
 @RestController
 @RequestMapping("/v1/schweine")
 @AllArgsConstructor
-public class SchweineController {
+public class SchweineQueryController {
 
 	private final SchweineService service;
 	private final SchweinDTOMapper mapper;
@@ -43,28 +43,6 @@ public class SchweineController {
 		return ResponseEntity.ok(mapper.convert(service.findeAlle()));
 	}
 	
-	@PutMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Void> saveOrUpdate(@Valid @RequestBody SchweinDTO dto) throws Exception{
-		if(service.speichernOderAendern(mapper.convert(dto))) {
-			return ResponseEntity.ok().build();
-		}
-		return ResponseEntity.status(HttpStatus.CREATED).build();
-	}
 	
-	@DeleteMapping(path = "/{id}")
-	public ResponseEntity<Void> remove(@PathVariable String id) throws Exception{
-		if(service.loeschen(id)) {
-			return ResponseEntity.ok().build();
-		}
-		return ResponseEntity.notFound().build();
-	}
-	
-	@PostMapping(path="/{id}/fuettern")
-	public ResponseEntity<Void> feed(@PathVariable String id) throws Exception{
-		if(service.fuettern(id)) {
-			return ResponseEntity.ok().build();
-		}
-		return ResponseEntity.notFound().build();
-	}
 	
 }
