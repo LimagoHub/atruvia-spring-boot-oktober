@@ -9,6 +9,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
+import de.atruvia.webapp.controllers.dtos.PersonDTO;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
@@ -18,8 +19,8 @@ public class LoggerAspect {
 	
 	
 	
-	@Before(value = "Pointcuts.restControllerMethodes()")
-	public void logAdvice(JoinPoint joinPoint) {
+	@Before(value = "Pointcuts.personControllerMethods() && args(personDTO,..)")
+	public void logAdvice(JoinPoint joinPoint, PersonDTO personDTO) {
 		log.error("Methode {} wird ausgeführt", joinPoint.getSignature().getName());
 	}
 

@@ -1,7 +1,12 @@
 package de.atruvia.webapp.repositories.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQuery;
@@ -35,6 +40,8 @@ public class PersonEntity {
 	@Column(length = 30, nullable = false)
 	private String nachname;
 	
-	
+	@Builder.Default
+	@ElementCollection(fetch = FetchType.EAGER)
+	private List<Kontakt> kontakte = new ArrayList<Kontakt>();
 
 }

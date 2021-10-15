@@ -7,6 +7,9 @@ public class Pointcuts {
 	@Pointcut("execution(public * de.atruvia.webapp.controllers.PersonenController.*(..))")
 	public void personControllerMethods(){}
 	
+//	@Pointcut("execution(public * de.atruvia.webapp.controllers.PersonenController.*(..)) 
+//	public void personControllerWithPersonDTOArgMethods(){}
+	
 	@Pointcut(value = "within(@org.springframework.web.bind.annotation.RestController *)" )
     public void restControllerMethodes() {}
 
